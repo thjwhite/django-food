@@ -1,1 +1,1 @@
-# django-food
+# TJ White's personal website
