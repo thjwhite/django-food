@@ -9,7 +9,7 @@ def index(request):
     context = {
         'latest_recipe_list': latest_recipe_list
     }
-    return render(request, 'polls/index.html', context)
+    return render(request, 'recipes/index.html', context)
 
 
 def recipe_details(request, recipe_name):
