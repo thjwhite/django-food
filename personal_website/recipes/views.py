@@ -17,6 +17,9 @@ def recipe_details(request, recipe_name):
         recipe = Recipe.objects.get(name=recipe_name)
     except Recipe.DoesNotExist:
         raise Http404('Recipe not found.')
+
+    ingredient_requirements = recipe.ingredientrequirement_set.all()
     context = dict()
     context['recipe'] = recipe
+    context['ingredient_requirements'] = ingredient_requirements
     return render(request, 'recipes/detail.html', context)

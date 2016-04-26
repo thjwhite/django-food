@@ -1,1 +1,22 @@
+<style media="screen" type="text/css">
+    .section {
+        text-decoration: underline;
+    }
+</style>
+
 <h1> {{ recipe.title }}</h1>
+
+<h2 class="section">Ingredients</h2>
+{% if ingredient_requirements %}
+    <table>
+        {% for ingredient_req in ingredient_requirements %}
+        <tr>
+            <td>{{ingredient_req.number_required}}</td>
+            <td>{{ingredient_req.measurement_unit}}</td>
+            <td>{{ingredient_req.ingredient.name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No ingredients stored for this recipe.</p>
+{% endif %}
