@@ -13,10 +13,6 @@ class BlogEntry(models.Model):
         return self.title
 
 
-class Paragraph(models.Model):
-    paragraph = models.TextField()
-
-
 class Section(models.Model):
     blog_entry = models.ForeignKey(BlogEntry)
     order_id = models.IntegerField()
@@ -27,14 +23,16 @@ class Section(models.Model):
 
     class Meta:
         unique_together = (("order_id", "blog_entry"), )
+        ordering = ['order_id']
 
 
 class Part(models.Model):
     order_id = models.IntegerField()
     section = models.ForeignKey(Section)
-    paragraph = models.OneToOneField(Paragraph)
-    code = models.OneToOneField(Snippet)
-    recipe = models.OneToOneField(Recipe)
+    paragraph = models.TextField()
+    code = models.OneToOneField(Snippet, null=True, blank=True)
+    recipe = models.OneToOneField(Recipe, null=True, blank=True)
 
     class Meta:
         unique_together = (("order_id", "section"), )
+        ordering = ['order_id']

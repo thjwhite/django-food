@@ -1,0 +1,45 @@
+{% extends "personal_website/base.html" %}
+
+{% block main %}
+    {% if latest_blog_list %}
+        <section>
+            {% for blog in latest_blog_list %}
+                <article>
+                    <h1>{{blog.title}}</h1>
+                    {% for section in blog.section_set.all %}
+                        <h3>{{section.header}}</h3>
+                        {% for part in section.part_set.all %}
+                            {% if part.paragraph %}
+                                <p>{{ part.paragraph }}</p>
+                            {% endif %}
+                            {% if part.code %}
+                                <code>{{ part.code }}</code>
+                            {% endif %}
+                            {% if part.recipe %}
+                                <table class="table table-bordered">
+                                    <caption>{{ part.recipe.title }}</caption>
+                                    <thead>
+                                        <th>Amount</th>
+                                        <th>Unit</th>
+                                        <th>Ingredient</th>
+                                    </thead>
+                                    <tbody>
+                                    {% for ingredient_req in part.recipe.ingredientrequirement_set.all %}
+                                        <tr>
+                                            <td>{{ingredient_req.number_required}}</td>
+                                            <td>{{ingredient_req.measurement_unit}}</td>
+                                            <td>{{ingredient_req.ingredient.name}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <p>No blogs!</p>
+    {% endif %}
+{% endblock %}

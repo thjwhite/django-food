@@ -6,7 +6,6 @@
               crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
               crossorigin="anonymous">
-
     </head>
 
     <body>
@@ -24,16 +23,12 @@
         </nav>
 
         <div class="container theme-showcase" role="main">
-            <!--<div class="page-header">-->
-                <!--<h1>Main</h1>-->
-            <!--</div>-->
-            <p>
-                {% block main %}{% endblock %}
-            </p>
+            {% block main %}{% endblock %}
         </div>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
                 crossorigin="anonymous">
         </script>
     </body>
+
 </html>

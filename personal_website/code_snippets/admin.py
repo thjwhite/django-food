@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Snippet, Language
+
+
+admin.site.register(Snippet)
+admin.site.register(Language)
