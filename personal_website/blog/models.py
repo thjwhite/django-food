@@ -26,12 +26,24 @@ class Section(models.Model):
         ordering = ['order_id']
 
 
+class Link(models.Model):
+    link = models.URLField()
+    caption = models.CharField(max_length=255)
+
+
+class Photo(models.Model):
+    photo = models.ImageField(upload_to="images/%Y/%m/%d/")
+    alt = models.CharField(max_length=255, null=True, blank=True)
+
+
 class Part(models.Model):
     order_id = models.IntegerField()
     section = models.ForeignKey(Section)
     paragraph = models.TextField()
     code = models.OneToOneField(Snippet, null=True, blank=True)
     recipe = models.OneToOneField(Recipe, null=True, blank=True)
+    photo = models.OneToOneField(Photo, null=True, blank=True)
+    link = models.OneToOneField(Link, null=True, blank=True)
 
     class Meta:
         unique_together = (("order_id", "section"), )

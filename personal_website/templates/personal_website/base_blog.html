@@ -7,6 +7,7 @@
                 <article>
                     <h1>{{blog.title}}</h1>
                     {% for section in blog.section_set.all %}
+                        <section>
                         <h3>{{section.header}}</h3>
                         {% for part in section.part_set.all %}
                             {% if part.paragraph %}
@@ -34,6 +35,13 @@
                                     </tbody>
                                 </table>
                             {% endif %}
+                            {% if part.photo %}
+                                <img src={{part.photo.photo.url}} alt="{{ part.photo.alt }}" ><br>
+                            {% endif %}
+                            {% if part.link %}
+                                <a href={{part.link.link}}>{{part.link.caption}}</a>
+                            {% endif %}
+                            </section>
                         {% endfor %}
                     {% endfor %}
                 </article>

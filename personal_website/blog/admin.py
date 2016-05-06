@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import BlogEntry, Section, Part
+from .models import BlogEntry, Section, Part, Link, Photo
 
 
 class PartInline(admin.TabularInline):
@@ -23,3 +23,5 @@ class SectionAdmin(admin.ModelAdmin):
 
 admin.site.register(BlogEntry, BlogEntryAdmin)
 admin.site.register(Section, SectionAdmin)
+admin.site.register(Link)
+admin.site.register(Photo)
